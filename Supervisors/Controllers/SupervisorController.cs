@@ -2,6 +2,7 @@
 using Supervisors.Interfaces;
 using Supervisors.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Supervisors.Controllers
 {
@@ -18,10 +19,10 @@ namespace Supervisors.Controllers
 
         [HttpGet]
         [Route("supervisors")]
-        public IEnumerable<string> GetSupervisors()
+        public async Task<IEnumerable<string>> GetSupervisors()
         {
             // Requirement: When endpoint is hit, a call is made to amazonaws endpoint
-            List<Manager> managers = _manager.GetManagers().Result;
+            List<Manager> managers = await _manager.GetManagers().ConfigureAwait(false);
             
             List<string> formattedManagers = new();            
             foreach(var manager in managers)
@@ -39,9 +40,9 @@ namespace Supervisors.Controllers
 
         [HttpPost]
         [Route("submit")]
-        public NotificationRegistration SubmitSupervisors(NotificationRegistration registration)
+        public async Task<NotificationRegistration> SubmitSupervisors(NotificationRegistration registration)
         {
-            _manager.PostManager(registration);
+            await Task.Run(() => _manager.PostManager(registration));
             return registration;
         }
     }
