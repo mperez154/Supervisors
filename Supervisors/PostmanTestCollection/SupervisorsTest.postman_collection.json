@@ -11,12 +11,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:49153/api/supervisors",
+					"raw": "https://localhost:49155/api/supervisors",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "49153",
+					"port": "49155",
 					"path": [
 						"api",
 						"supervisors"
@@ -40,12 +40,12 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:49153/api/submit",
+					"raw": "https://localhost:49155/api/submit",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "49153",
+					"port": "49155",
 					"path": [
 						"api",
 						"submit"
