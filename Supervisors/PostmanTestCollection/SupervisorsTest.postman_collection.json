@@ -1,0 +1,81 @@
+{
+	"info": {
+		"_postman_id": "c4009426-e9fc-4a11-a127-29a9446b2d02",
+		"name": "SupervisorsTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Supervisors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:49153/api/supervisors",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "49153",
+					"path": [
+						"api",
+						"supervisors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Submit",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"FirstName\": \"Marco\",\r\n    \"LastName\": \"Perez\",\r\n    \"Email\": \"mperez154@gmail.com\",\r\n    \"PhoneNumber\": \"813-713-7220\",\r\n    \"Supervisor\": \"John Doe\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:49153/api/submit",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "49153",
+					"path": [
+						"api",
+						"submit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AWS Test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://o3m5qixdng.execute-api.us-east-1.amazonaws.com/api/managers",
+					"protocol": "https",
+					"host": [
+						"o3m5qixdng",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"api",
+						"managers"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
