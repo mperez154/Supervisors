@@ -13,17 +13,22 @@ author: mperez
 
 ### Step 1: Install Docker Desktop (if needed)
 
-> For detailed instructions, please go to https://docs.docker.com/desktop/windows/install/
-> This app was created to use a Linux container, and therefore Docker Desktop must have a Linux image available
+1. For detailed instructions, please go to https://docs.docker.com/desktop/windows/install/
+2. This app was created to use a Linux container, and therefore Docker Desktop must have a Linux image available
+3. If prompted, also install the Linux Kernel update package here: https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package
 
 ### Step 2: Download/ Clone this sample code 
 
-URL: https://github.com/mperez154/Supervisors
-Clone URL: https://github.com/mperez154/Supervisors.git
+1. Project URL: https://github.com/mperez154/Supervisors
+2. Clone URL: https://github.com/mperez154/Supervisors.git
 
 ### Step 3: Run the sample
 
-1. Build the solution and run it.
+1. Before building, ensure that 'Docker' is selected (see screenshot below)
+2. Build the solution and run it.
+
+![Start using Docker](ReadmeFiles/StartProjectThroughDocker.png)
+
 
 ### Step 4: Test the App (3 options)
 
