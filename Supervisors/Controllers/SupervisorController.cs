@@ -20,16 +20,19 @@ namespace Supervisors.Controllers
         [Route("supervisors")]
         public IEnumerable<string> GetSupervisors()
         {
-            // gets the list of managers from AWS endpoint
+            // Requirement: When endpoint is hit, a call is made to amazonaws endpoint
             List<Manager> managers = _manager.GetManagers().Result;
             
             List<string> formattedManagers = new();            
             foreach(var manager in managers)
             {
+                // Requirement: Numeric jurisdictions should be excluded 
+                // Requirement: A list of supervisor strings formatted as "jurisdicion - lastname, firstname"  returned
                 if (!int.TryParse(manager.Jurisdiction, out _))
                     formattedManagers.Add(string.Format("{0} - {1}, {2}", manager.Jurisdiction, manager.LastName, manager.FirstName));
             }
 
+            // Requirement: payload should be sorted in alphabetical order first by jurisdiction, then by lastName and firstName
             formattedManagers.Sort(); 
             return formattedManagers;
         }

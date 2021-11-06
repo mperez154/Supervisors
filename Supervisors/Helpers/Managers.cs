@@ -19,9 +19,7 @@ namespace Supervisors.Helpers
         }
         public async void PostManager(NotificationRegistration registration)
         {
-            // using .net string interpolation here (using string.Format() in other locations)
-            // also in a real world app, if this needed to be displayed/logged, it would be handled differently 
-            // by either logging to a file, a db, etc. 
+            // Requirement: The submitted data above should be printed to the console upon receiving the post request
             await Task.Run(() => Console.WriteLine($"First Name: {registration.FirstName} \r\nLast Name: {registration.LastName} \r\nEmail: {registration.Email}"));
         }
 

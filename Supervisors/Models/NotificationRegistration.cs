@@ -5,7 +5,7 @@ namespace Supervisors.Models
 {
     public class NotificationRegistration
     {
-        [Required]
+        [Required] // Requirement: If firstName, lastName, or supervisor is not provided, the endpoint should return an error response
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
