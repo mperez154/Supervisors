@@ -14,7 +14,7 @@ author: mperez
 ### Step 1: Install Docker Desktop (if needed)
 
 > For detailed instructions, please go to https://docs.docker.com/desktop/windows/install/
-> This app was created to use a Linux container, and therefor Docker Desktop must have a Linux image available
+> This app was created to use a Linux container, and therefore Docker Desktop must have a Linux image available
 
 ### Step 2: Download/ Clone this sample code 
 
