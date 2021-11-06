@@ -1,27 +1,15 @@
 ---
 platforms: dotnet
 author: mperez
-level: 100
-service: ASP.NET Core Web Api
-endpoint: AAD v2.0
 ---
 # Pre-Requisites 
 
 > This sample is for ASP.NET Core 5.0
 
-> To see the Console output for the Post call, Go to Visual Studio options >> Debugging >> General, then check the box that says 'Redirect all output Window text to the Immediate Window'
+> To see the Console output for the Post call, Go to Visual Studio Options >> Debugging >> General, then check the box that says 'Redirect all output Window text to the Immediate Window'. At that point you can view console output in the immediate window.
 > Otherwise, the Response will "echo" the request by returning the request object 
 
-
-## Scenario
-
-This sample shows how to build a .NET Core 2.1 MVC Web app that uses OpenID Connect to sign in users. Users can use personal accounts (including outlook.com, live.com, and others) as well as work and school accounts from any company or organization that has integrated with Azure Active Directory. It leverages the ASP.NET Core OpenID Connect middleware.
-
-![Sign in with Azure AD](ReadmeFiles/sign-in.png)
-
-<!-- Activate when the signInAndCallMsGraph branch is ready
-> This is the first of a set of tutorials. Once you understand how to sign-in users in an ASP.NET Core Web App with Open Id Connect, learn how to enable you [Web App to call a Web API in the name of the user](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2/tree/signInAndCallMsGraph)
--->
+![View Sample Here](ReadmeFiles/ImmediateWindow.png)
 
 ## How to run this sample
 
@@ -154,82 +142,3 @@ Open **appsettings.json** and replace the line containing the `TenantId` value w
 ```json
 "TenantId": "consumers",
 ```
-
-### Option 3: Restrict access to a single organization (single-tenant)
-
-You can restrict sign-in access for your application to only user accounts that are in a single Azure AD tenant - including *guest accounts* of that tenant. This scenario is a common for *line-of-business applications*:
-
-1. Open **appsettings.json** and replace the line containing the `TenantId` value with the domain of your tenant, for example, *contoso.onmicrosoft.com* or the guid for the Tenant ID:
-
-   ```json
-   "TenantId": "[Enter the domain of your tenant, e.g. contoso.onmicrosoft.com or the Tenant Id]",
-   ```
-
-2. In your **Startup.cs** file, change the code we added in the `ConfigureServices` method to be:
-
-    ```CSharp
-    services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =>
-    {
-        options.Authority = options.Authority + "/v2.0/";
-        options.TokenValidationParameters.ValidateIssuer = true;
-    });
-    ```
-
-### Option 4: Restrict access to a list of organizations
-
-You can restrict sign-in access to only user accounts that are in a specific list of Azure AD organizations:
-
-1. In your **Startup.cs** file, set the `ValidateIssuer` argument to **`true`**
-2. Add a `ValidIssuers` `TokenValidationParameters` parameter containing the list of allowed organizations.
-
-### Option 5: Use a custom method to validate issuers
-
-You can implement a custom method to validate issuers by using the **IssuerValidator** parameter. For more information about how to use this parameter, read about [Validating Tokens](https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/wiki/ValidatingTokens).
-
-## About The code
-
-This sample shows how to use the OpenID Connect ASP.NET Core middleware to sign in users from a single Azure AD tenant. The middleware is initialized in the `Startup.cs` file by passing it the Client ID of the app, and the URL of the Azure AD tenant where the app is registered. These values are  read from the `appsettings.json` file. The middleware takes care of:
-
-- Downloading the Azure AD metadata, finding the signing keys, and finding the issuer name for the tenant.
-- Processing OpenID Connect sign-in responses by validating the signature and issuer in an incoming JWT, extracting the user's claims, and putting the claims in `ClaimsPrincipal.Current`.
-- Integrating with the session cookie ASP.NET Core middleware to establish a session for the user.
-
-You can trigger the middleware to send an OpenID Connect sign-in request by decorating a class or method with the `[Authorize]` attribute or by issuing a challenge (see the [AccountController.cs](https://github.com/aspnet/AspNetCore/blob/master/src/Azure/AzureAD/Authentication.AzureAD.UI/src/Areas/AzureAD/Controllers/AccountController.cs) file in the ASP.NET Core source tree):
-
-```csharp
-return Challenge(
-    new AuthenticationProperties { RedirectUri = redirectUrl },
-    OpenIdConnectDefaults.AuthenticationScheme);
-```
-
-Similarly, you can send a sign-out request:
-
-```csharp
-return SignOut(
-    new AuthenticationProperties { RedirectUri = callbackUrl },
-    CookieAuthenticationDefaults.AuthenticationScheme,
-    OpenIdConnectDefaults.AuthenticationScheme);
-```
-
-The middleware in this project is created as a part of the open-source [ASP.NET Security](https://github.com/aspnet/Security) project.
-
-## Learn more
-
-### Token validation
-
-To understand more about app registration, see:
-
-- [Quickstart: Register an application with the Microsoft identity platform (Preview)](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app)
-- [Quickstart: Configure a client application to access web APIs (Preview)](https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-access-web-apis)
-
-The token validation is performed by the classes of the [Identity Model Extensions for DotNet](https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet) library. Learn about customizing
-token validation by reading:
-
-- [Validating Tokens](https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/wiki/ValidatingTokens) in that library's conceptual documentation
-- [TokenValidationParameters](https://docs.microsoft.com/en-us/dotnet/api/microsoft.identitymodel.tokens.tokenvalidationparameters?view=azure-dotnet)'s reference documentation.
-
-<!-- Activate when the signInAndCallMsGraph branch is ready
-### Next steps - call a Web API from the Web App
-
-Now that  you understand how to sign in users in an ASP.NET Core Web App with Open ID Connect, learn how to [enable your Web App to call a Web API in the name of the user](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2/tree/signInAndCallMsGraph)
--->
