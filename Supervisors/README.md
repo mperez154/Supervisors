@@ -25,7 +25,7 @@ Clone URL: https://github.com/mperez154/Supervisors.git
 
 1. Build the solution and run it.
 
->> To Test the app, there are 3 options: 
+### Step 4: Test the App (3 options)
 
 #### Option 1
 
