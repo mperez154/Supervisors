@@ -23,11 +23,10 @@ namespace Supervisors.Controllers
             // gets the list of managers from AWS endpoint
             List<Manager> managers = _manager.GetManagers().Result;
             
-            List<string> formattedManagers = new List<string>();            
+            List<string> formattedManagers = new();            
             foreach(var manager in managers)
             {
-                int output; 
-                if(!int.TryParse(manager.Jurisdiction, out output))
+                if (!int.TryParse(manager.Jurisdiction, out _))
                     formattedManagers.Add(string.Format("{0} - {1}, {2}", manager.Jurisdiction, manager.LastName, manager.FirstName));
             }
 

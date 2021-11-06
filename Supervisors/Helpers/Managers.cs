@@ -29,7 +29,7 @@ namespace Supervisors.Helpers
         {
             // gets base url from config file
             string AWS_BaseURL = _configuration.GetValue<string>("AWS_BaseURL");
-            List<Manager> managers = new List<Manager>();
+            List<Manager> managers = new();
             
             // call to AWS endpoint
             using (var http = new HttpClient())
